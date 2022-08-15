@@ -52,8 +52,8 @@ export const CardPost: FC<Props> = (props: Props): ReactElement => {
                 <PostContent>
                     <PostTitle>{post.title}</PostTitle>
                     <PostDescription>{post.content}</PostDescription>
-                    <PostSeeMore href={`/detail/${post.id}`}>
-                        See more
+                    <PostSeeMore href={`/edit/${post.id}`}>
+                        Edit post
                     </PostSeeMore>
                 </PostContent>
             </>

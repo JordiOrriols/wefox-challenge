@@ -35,7 +35,8 @@ export const Navigator = (): ReactElement => {
             <Suspense fallback={fallback}>
                 <Routes>
                     <Route path="/" element={<PostListScreen />} />
-                    <Route path="/edit" element={<PostEditScreen />} />
+                    <Route path="/create" element={<PostEditScreen />} />
+                    <Route path="/edit/:id" element={<PostEditScreen />} />
                 </Routes>
             </Suspense>
         </Router>
