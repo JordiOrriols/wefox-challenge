@@ -14,7 +14,10 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     },
-    "include": ["src"]
+    "include": ["src"],
+    "exclude": ["src/setupTests.ts", "***/*.test.ts", "***/*.test.tsx"]
 }
