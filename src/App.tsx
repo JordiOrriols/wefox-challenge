@@ -6,9 +6,10 @@
  * Proprietary and confidential.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { Post, PostsContext } from './contexts/posts';
 import src from './logo.svg';
 import { Navigator } from './navigator';
 
@@ -21,7 +22,7 @@ const AppContainer = styled('div')((): any => ({
     flexWrap: 'nowrap',
     justifyContent: 'space-between',
     alignItems: 'stretch',
-    alignContent: 'stretch'
+    alignContent: 'stretch',
 }));
 
 const AppHeader = styled('header')((): any => ({
@@ -45,9 +46,8 @@ const AppContent = styled('div')((): any => ({
     flexDirection: 'column',
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    alignItems: 'center',
     alignContent: 'stretch',
-    textAlign: 'center',
     padding: '20px',
 }));
 
@@ -57,17 +57,36 @@ const AppFooter = styled('footer')((): any => ({
 }));
 
 function App(): React.ReactElement {
-    return (
-        <AppContainer>
-            <AppHeader>
-                <AppLogo src={src} alt="logo" />
-            </AppHeader>
-            <AppContent>
-                <Navigator />
-            </AppContent>
+    const [posts, setPosts] = useState<Post[]>();
 
-            <AppFooter>Jordi Orriols</AppFooter>
-        </AppContainer>
+    useEffect((): void => {
+        fetch('http://localhost:3000/api/v1/posts')
+            .then(async (response: Response): Promise<void> => {
+                const postsArray: any = (await response.json()) as any;
+
+                // Validate Input from API
+
+                setPosts(postsArray);
+            })
+            .catch((_error: any): void => {
+                // console.error(error)
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+        <PostsContext.Provider value={{ posts }}>
+            <AppContainer>
+                <AppHeader>
+                    <AppLogo src={src} alt="logo" />
+                </AppHeader>
+                <AppContent>
+                    <Navigator />
+                </AppContent>
+
+                <AppFooter>Jordi Orriols</AppFooter>
+            </AppContainer>
+        </PostsContext.Provider>
     );
 }
 
