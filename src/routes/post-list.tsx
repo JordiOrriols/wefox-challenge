@@ -7,8 +7,8 @@
  */
 
 import { useContext, FC, ReactElement } from 'react';
-
 import styled from 'styled-components';
+
 import { CardPost } from '../components/card-post';
 import { Post, PostsContext } from '../contexts/posts';
 
@@ -30,7 +30,7 @@ const PostListScreen: FC = (): ReactElement => {
                 )
             )}
 
-            <CreateNewPost href={`/create`}>Add new post</CreateNewPost>
+            <CreateNewPost href={'/create'}>Add new post</CreateNewPost>
         </>
     );
 };
