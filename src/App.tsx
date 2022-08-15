@@ -13,13 +13,15 @@ import src from './logo.svg';
 import { Navigator } from './navigator';
 
 const AppContainer = styled('div')((): any => ({
-    textAlign: 'center',
+    width: '100%',
+    flexGrow: 1,
     margin: '30px',
-}));
-
-const AppLogo = styled('img')((): any => ({
-    height: '50px',
-    pointerEvents: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    alignContent: 'stretch'
 }));
 
 const AppHeader = styled('header')((): any => ({
@@ -27,18 +29,44 @@ const AppHeader = styled('header')((): any => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center',
+    padding: '20px',
+}));
+
+const AppLogo = styled('img')((): any => ({
+    height: '50px',
+    pointerEvents: 'none',
+    opacity: 0.1,
+}));
+
+const AppContent = styled('div')((): any => ({
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    alignContent: 'stretch',
+    textAlign: 'center',
+    padding: '20px',
+}));
+
+const AppFooter = styled('footer')((): any => ({
+    textAlign: 'center',
+    padding: '20px',
 }));
 
 function App(): React.ReactElement {
     return (
         <AppContainer>
-            <AppHeader className="App-header">
-                <AppLogo src={src} className="App-logo" alt="logo" />
+            <AppHeader>
+                <AppLogo src={src} alt="logo" />
             </AppHeader>
+            <AppContent>
+                <Navigator />
+            </AppContent>
 
-            <Navigator />
-
-            <footer>Jordi Orriols</footer>
+            <AppFooter>Jordi Orriols</AppFooter>
         </AppContainer>
     );
 }
