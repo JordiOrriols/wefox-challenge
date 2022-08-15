@@ -1,0 +1,18 @@
+{
+    "public/**/*.{html,json}": [
+        "prettier --write"
+    ],
+    "src/**/*.{json,md}": [
+        "prettier --write"
+    ],
+    "src/**/*.{css,scss}": [
+        "stylelint --",
+        "prettier --write"
+    ],
+    "src/**/*.{tsx,ts}": [
+        "npm run tslint --",
+        "npm run build",
+        "npm run test -- --bail --findRelatedTests",
+        "prettier --write"
+    ]
+}
