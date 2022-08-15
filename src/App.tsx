@@ -7,28 +7,39 @@
  */
 
 import React from 'react';
+import styled from 'styled-components';
 
 import src from './logo.svg';
-import './App.css';
+import { Navigator } from './navigator';
+
+const AppContainer = styled('div')((): any => ({
+    textAlign: 'center',
+    margin: '30px',
+}));
+
+const AppLogo = styled('img')((): any => ({
+    height: '50px',
+    pointerEvents: 'none',
+}));
+
+const AppHeader = styled('header')((): any => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
 
 function App(): React.ReactElement {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={src} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <AppContainer>
+            <AppHeader className="App-header">
+                <AppLogo src={src} className="App-logo" alt="logo" />
+            </AppHeader>
+
+            <Navigator />
+
+            <footer>Jordi Orriols</footer>
+        </AppContainer>
     );
 }
 

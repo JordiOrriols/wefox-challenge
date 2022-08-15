@@ -50,7 +50,6 @@
         "no-void-expression": true,
         "number-literal-format": true,
         "object-literal-key-quotes": [true, "as-needed"],
-        "object-literal-sort-keys": [true, "match-declaration-order"],
         "ordered-imports": [
             true,
             {
