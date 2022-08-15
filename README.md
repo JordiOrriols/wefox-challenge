@@ -3,19 +3,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # INCLUDED
-- React
-- Create React App
-- Typescript
-- Husky
-- Prettier
-- Stylelint
-- Tslint
+
+-   React
+-   Create React App
+-   Typescript
+-   Husky
+-   Prettier
+-   Stylelint
+-   Tslint
 
 # REQUIREMENTS
 
 Install
 
-- nvm
+-   nvm
 
 # SETUP
 
