@@ -7,6 +7,7 @@
  */
 
 import { render, screen } from '@testing-library/react';
+
 import PostListScreen from './post-list';
 
 describe('Post List Screen', (): void => {

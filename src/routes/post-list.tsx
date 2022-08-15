@@ -7,7 +7,6 @@
  */
 
 import { FC, ReactElement } from 'react';
-
 const PostListScreen: FC = (): ReactElement => {
     return <>List</>;
 };

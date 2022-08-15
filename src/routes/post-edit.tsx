@@ -7,7 +7,6 @@
  */
 
 import { FC, ReactElement } from 'react';
-
 const PostEditScreen: FC = (): ReactElement => {
     return <>Edit</>;
 };
