@@ -18,6 +18,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "analyze": "react-scripts build && source-map-explorer 'build/static/js/*.js'",
+    "stylelint": "stylelint src/**/*.css",
+    "stylelint-fix": "stylelint src/**/*.css --fix",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint-fix": "tslint -c tslint.json -p tsconfig.json --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +51,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
+    "source-map-explorer": "^2.5.2",
     "stylelint": "^14.10.0",
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-scss": "^4.3.0",
