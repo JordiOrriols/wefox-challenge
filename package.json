@@ -25,7 +25,7 @@
     "tslint-fix": "tslint -c tslint.json -p tsconfig.json --fix && tslint -c tslint-test.json -p tsconfig-test.json --fix",
     "prettier": "prettier --write 'src/**/*.{ts,tsx,js,jsx,scss,css,json}'",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && compress-cra",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install"
@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "compress-create-react-app": "^1.2.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
