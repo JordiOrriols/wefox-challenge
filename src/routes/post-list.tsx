@@ -11,10 +11,11 @@ import styled from 'styled-components';
 
 import { CardPost } from '../components/card-post';
 import { Post, PostsContext } from '../contexts/posts';
+import { colors } from '../helpers/colors';
 
 const CreateNewPost = styled('a')((): any => ({
     textAlign: 'right',
-    color: '#3498db',
+    color: colors.blue,
 }));
 
 const PostListScreen: FC = (): ReactElement => {

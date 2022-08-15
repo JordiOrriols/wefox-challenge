@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 import { Card } from '../components/card';
 import { Post } from '../contexts/posts';
+import { colors } from '../helpers/colors';
 
 interface Props {
     post: Post;
@@ -28,7 +29,7 @@ const PostContent = styled('div')((): any => ({
 
 const PostTitle = styled('h2')((): any => ({
     fontWeight: '300',
-    color: ' #484849',
+    color: colors.gray,
 }));
 
 const PostDescription = styled('p')((): any => ({
@@ -39,7 +40,7 @@ const PostDescription = styled('p')((): any => ({
 
 const PostSeeMore = styled('a')((): any => ({
     textAlign: 'right',
-    color: '#3498db',
+    color: colors.blue,
 }));
 
 export const CardPost: FC<Props> = (props: Props): ReactElement => {
