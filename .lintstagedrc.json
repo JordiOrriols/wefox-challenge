@@ -1,18 +1,7 @@
 {
-    "public/**/*.{html,json}": [
-        "prettier --write"
-    ],
-    "src/**/*.{json,md}": [
-        "prettier --write"
-    ],
-    "src/**/*.{css,scss}": [
-        "stylelint --",
-        "prettier --write"
-    ],
-    "src/**/*.{tsx,ts}": [
-        "npm run tslint --",
-        "npm run build",
-        "npm run test -- --bail --findRelatedTests",
-        "prettier --write"
-    ]
+    "package.json": "npx npm-sort",
+    "public/**/*.{html,json}": ["prettier --write"],
+    "src/**/*.{json,md}": ["prettier --write"],
+    "src/**/*.{css,scss}": ["npm run stylelint-fix", "prettier --write"],
+    "src/**/*.{tsx,ts}": ["npm run tslint-fix", "prettier --write"]
 }
