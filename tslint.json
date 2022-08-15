@@ -1,41 +1,16 @@
 {
-    "extends": [
-        "tslint:latest",
-        "tslint-react",
-        "tslint-config-prettier"
-    ],
+    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
     "rules": {
-        "align": [
-            true,
-            "parameters",
-            "statements",
-            "members",
-            "elements"
-        ],
-        "arrow-parens": [
-            true,
-            "ban-single-arg-parens"
-        ],
+        "align": [true, "parameters", "statements", "members", "elements"],
+        "arrow-parens": [true, "ban-single-arg-parens"],
         "await-promise": true,
         "binary-expression-operand-order": true,
-        "curly": [
-            true,
-            "ignore-same-line"
-        ],
-        "cyclomatic-complexity": [
-            true,
-            5
-        ],
+        "curly": [true, "ignore-same-line"],
+        "cyclomatic-complexity": [true, 5],
         "deprecation": true,
-        "interface-name": [
-            true,
-            "never-prefix"
-        ],
+        "interface-name": [true, "never-prefix"],
         "match-default-export-name": true,
-        "member-access": [
-            true,
-            "no-public"
-        ],
+        "member-access": [true, "no-public"],
         "member-ordering": [
             true,
             {
@@ -57,10 +32,7 @@
         ],
         "newline-before-return": true,
         "no-boolean-literal-compare": true,
-        "no-consecutive-blank-lines": [
-            true,
-            1
-        ],
+        "no-consecutive-blank-lines": [true, 1],
         "no-floating-promises": true,
         "no-for-in-array": true,
         "no-inferred-empty-object-type": true,
@@ -71,26 +43,14 @@
         "no-parameter-reassignment": true,
         "no-submodule-imports": false,
         "no-switch-case-fall-through": true,
-        "no-unbound-method": [
-            true,
-            "ignore-static"
-        ],
+        "no-unbound-method": [true, "ignore-static"],
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-qualifier": true,
-        "no-unused-expression": [
-            true,
-            "allow-fast-null-checks"
-        ],
+        "no-unused-expression": [true, "allow-fast-null-checks"],
         "no-void-expression": true,
         "number-literal-format": true,
-        "object-literal-key-quotes": [
-            true,
-            "as-needed"
-        ],
-        "object-literal-sort-keys": [
-            true,
-            "match-declaration-order"
-        ],
+        "object-literal-key-quotes": [true, "as-needed"],
+        "object-literal-sort-keys": [true, "match-declaration-order"],
         "ordered-imports": [
             true,
             {
@@ -100,10 +60,7 @@
                 "module-source-path": "full"
             }
         ],
-        "prefer-function-over-method": [
-            true,
-            "allow-public"
-        ],
+        "prefer-function-over-method": [true, "allow-public"],
         "prefer-method-signature": true,
         "prefer-readonly": true,
         "prefer-switch": true,
@@ -127,11 +84,7 @@
                 "esSpecCompliant": true
             }
         ],
-        "triple-equals": [
-            true,
-            "allow-null-check",
-            "allow-undefined-check"
-        ],
+        "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
         "typedef": [
             true,
             "call-signature",
