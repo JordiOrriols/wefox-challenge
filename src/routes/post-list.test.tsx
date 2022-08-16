@@ -34,7 +34,14 @@ describe('Post List Screen', (): void => {
         ];
 
         render(
-            <PostsContext.Provider value={{ posts }}>
+            <PostsContext.Provider
+                value={{
+                    posts,
+                    refresh: (): void => {
+                        return;
+                    },
+                }}
+            >
                 <PostListScreen />
             </PostsContext.Provider>
         );

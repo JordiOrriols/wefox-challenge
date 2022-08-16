@@ -116,6 +116,7 @@ const PostEditScreen: FC = (): ReactElement => {
                 await addPost(postToSend);
             }
 
+            postsContext.refresh();
             navigate('/');
         } catch (error) {
             logger.error(`${error}`);
@@ -161,11 +162,7 @@ const PostEditScreen: FC = (): ReactElement => {
                             onChange={onInputChange}
                         />
 
-                        <Button
-                            primary={true}
-                            type="submit"
-                            label="Save"
-                        ></Button>
+                        <Button primary={true} type="submit" label="Save" />
 
                         <CreateNewPost href={'/'}>Cancel</CreateNewPost>
                     </Form>

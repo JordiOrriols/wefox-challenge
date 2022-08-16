@@ -24,6 +24,7 @@ export interface Post extends DefaultPost {
 
 type PostsContextType = {
     posts?: Post[];
+    refresh(): void;
 };
 
 export const defaultPost = {
@@ -35,4 +36,8 @@ export const defaultPost = {
 };
 
 export const PostsContext: React.Context<PostsContextType> =
-    React.createContext<PostsContextType>({});
+    React.createContext<PostsContextType>({
+        refresh: (): void => {
+            return;
+        },
+    });

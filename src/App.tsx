@@ -60,7 +60,7 @@ const AppFooter = styled('footer')((): any => ({
 function App(): React.ReactElement {
     const [posts, setPosts] = useState<Post[]>();
 
-    useEffect((): void => {
+    const refresh = (): void => {
         getPosts()
             .then((postsArray: Post[]): void => {
                 setPosts(postsArray);
@@ -68,12 +68,16 @@ function App(): React.ReactElement {
             .catch((error: any): void => {
                 logger.error(`${error}`);
             });
+    };
+
+    useEffect((): void => {
+        refresh();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <PostsContext.Provider value={{ posts }}>
+        <PostsContext.Provider value={{ posts, refresh }}>
             <AppContainer>
                 <AppHeader>
                     <AppLogo
