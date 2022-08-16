@@ -8,19 +8,30 @@
 
 import React from 'react';
 
-export interface Post {
+export interface DefaultPost {
     content: string;
-    created_at: string;
-    id: number;
     image_url: string;
     lat: string;
     long: string;
     title: string;
+}
+
+export interface Post extends DefaultPost {
+    id: number;
+    created_at: string;
     updated_at: string;
 }
 
 type PostsContextType = {
     posts?: Post[];
+};
+
+export const defaultPost = {
+    content: ' ',
+    image_url: ' ',
+    lat: ' ',
+    long: ' ',
+    title: ' ',
 };
 
 export const PostsContext: React.Context<PostsContextType> =
