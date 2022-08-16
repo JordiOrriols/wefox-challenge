@@ -17,7 +17,7 @@ const CardBody = styled('div')((): any => ({
     maxWidth: '600px',
     width: '100%',
     background: 'white',
-    margin: '40px',
+    margin: '40px auto',
     boxSizing: 'border-box',
     boxShadow: ' 0 20px 40px -20px rgba(0,0,0,0.3)',
 }));
