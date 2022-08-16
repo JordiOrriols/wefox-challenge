@@ -9,7 +9,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { getPosts } from './cloud/posts';
 import { Post, PostsContext } from './contexts/posts';
+import { logger } from './helpers/logger';
 import src from './logo.svg';
 import { Navigator } from './navigator';
 
@@ -60,17 +62,14 @@ function App(): React.ReactElement {
     const [posts, setPosts] = useState<Post[]>();
 
     useEffect((): void => {
-        fetch('http://localhost:3000/api/v1/posts')
-            .then(async (response: Response): Promise<void> => {
-                const postsArray: any = (await response.json()) as any;
-
-                // Validate Input from API
-
+        getPosts()
+            .then((postsArray: Post[]): void => {
                 setPosts(postsArray);
             })
-            .catch((_error: any): void => {
-                // console.error(error)
+            .catch((error: any): void => {
+                logger.error(`${error}`);
             });
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
