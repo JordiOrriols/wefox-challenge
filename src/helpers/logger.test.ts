@@ -9,10 +9,9 @@
 import { logger } from './logger';
 import { magicNumber } from './numbers';
 
-const two = 2;
 describe('logger', (): void => {
     it('should log log', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.log('MyMessage');
@@ -20,7 +19,7 @@ describe('logger', (): void => {
     });
 
     it('should log log with data', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.log('MyMessage', { data: 'data' });
@@ -28,7 +27,7 @@ describe('logger', (): void => {
     });
 
     it('should log info', (): void => {
-        expect.assertions(1);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.info('MyMessage');
@@ -36,7 +35,7 @@ describe('logger', (): void => {
     });
 
     it('should log info with data', (): void => {
-        expect.assertions(1);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.info('MyMessage', { data: 'data' });
@@ -44,7 +43,7 @@ describe('logger', (): void => {
     });
 
     it('should log warn', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.warn('MyMessage');
@@ -52,7 +51,7 @@ describe('logger', (): void => {
     });
 
     it('should log warn with data', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.warn('MyMessage', { data: 'data' });
@@ -60,7 +59,7 @@ describe('logger', (): void => {
     });
 
     it('should log error', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.error('MyMessage');
@@ -68,7 +67,7 @@ describe('logger', (): void => {
     });
 
     it('should log error with data', (): void => {
-        expect.assertions(two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.error('MyMessage', { data: 'data' });
@@ -76,7 +75,7 @@ describe('logger', (): void => {
     });
 
     it('should log exception', (): void => {
-        expect.assertions(magicNumber.two);
+        expect.assertions(magicNumber.one);
 
         expect((): void => {
             logger.exception(new Error('Error message'));

@@ -13,7 +13,7 @@ import PostEditScreen from './post-edit';
 describe('Post Edit Screen', (): void => {
     test('renders post edit', (): void => {
         render(<PostEditScreen />);
-        const text = screen.getByText('Edit');
+        const text = screen.getByText('Edit Post');
         expect(text).toBeInTheDocument();
     });
 });
