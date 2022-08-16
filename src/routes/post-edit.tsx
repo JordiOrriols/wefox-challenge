@@ -9,8 +9,8 @@
 import { useContext, useEffect, useState, FC, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { addPost, updatePost } from '../api/posts';
 
+import { addPost, updatePost } from '../api/posts';
 import { Card } from '../components/card';
 import { CardPost } from '../components/card-post';
 import { Input } from '../components/input';
