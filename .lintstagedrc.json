@@ -1,11 +1,10 @@
 {
-    "package.json": ["npx npm-sort", "git add"],
-    "public/**/*.{html,json}": ["prettier --write", "git add"],
-    "src/**/*.{json,md}": ["prettier --write", "git add"],
+    "package.json": ["npx npm-sort"],
+    "public/**/*.{html,json}": ["prettier --write"],
+    "src/**/*.{json,md}": ["prettier --write"],
     "src/**/*.{css,scss}": [
         "npm run stylelint-fix",
-        "prettier --write",
-        "git add"
+        "prettier --write"
     ],
-    "src/**/*.{tsx,ts}": ["prettier --write", "git add"]
+    "src/**/*.{tsx,ts}": ["prettier --write"]
 }
