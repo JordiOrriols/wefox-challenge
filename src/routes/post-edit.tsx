@@ -9,6 +9,7 @@
 import { useContext, useEffect, useState, FC, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { addPost, updatePost } from '../api/posts';
 
 import { Card } from '../components/card';
 import { CardPost } from '../components/card-post';
@@ -19,6 +20,7 @@ import {
     Post,
     PostsContext,
 } from '../contexts/posts';
+import { colors } from '../helpers/colors';
 import { logger } from '../helpers/logger';
 
 const Container = styled('div')((): any => ({
@@ -60,6 +62,11 @@ const Title = styled('h2')((): any => ({
     textAlign: 'center',
 }));
 
+const CreateNewPost = styled('a')((): any => ({
+    textAlign: 'right',
+    color: colors.blue,
+}));
+
 const PostEditScreen: FC = (): ReactElement => {
     const postsContext = useContext(PostsContext);
     const [post, setPost] = useState<DefaultPost>(defaultPost);
@@ -87,8 +94,28 @@ const PostEditScreen: FC = (): ReactElement => {
         if (validIdList.indexOf(id) !== -1) setPost({ ...post, [id]: value });
     };
 
-    const onSubmit = (): void => {
-        logger.log('Submit');
+    const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
+        event: React.FormEvent<HTMLFormElement>
+    ): Promise<void> => {
+        event.preventDefault();
+        try {
+            const postToSend: DefaultPost = {
+                title: post.title,
+                content: post.content,
+                image_url: post.image_url,
+                lat: post.lat,
+                long: post.long,
+            };
+
+            if (params.id !== undefined) {
+                const currentPostID = parseInt(params.id, undefined);
+                await updatePost(currentPostID, postToSend);
+            } else {
+                await addPost(postToSend);
+            }
+        } catch (error) {
+            logger.error(`${error}`);
+        }
     };
 
     return (
@@ -127,6 +154,9 @@ const PostEditScreen: FC = (): ReactElement => {
                             value={post.long}
                             onChange={onInputChange}
                         />
+                        <button type="submit">Save</button>
+
+                        <CreateNewPost href={'/'}>Cancel</CreateNewPost>
                     </Form>
                 </Card>
             </LeftForm>

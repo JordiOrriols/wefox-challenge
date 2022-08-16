@@ -6,7 +6,7 @@
  * Proprietary and confidential.
  */
 
-import { Post } from '../contexts/posts';
+import { DefaultPost, Post } from '../contexts/posts';
 import { logger } from '../helpers/logger';
 
 import { getFromApi } from './api';
@@ -44,4 +44,25 @@ export const getPosts = async (): Promise<Post[]> => {
     }
 
     return posts;
+};
+
+export const addPost = async (post: DefaultPost): Promise<any> => {
+    logger.info('API: addPost');
+
+    return getFromApi('POST', 'posts', post);
+};
+
+export const updatePost = async (
+    postId: number,
+    post: DefaultPost
+): Promise<any> => {
+    logger.info('API: updatePost');
+
+    return getFromApi('PUT', `posts/${postId}`, post);
+};
+
+export const deletePost = async (postId: number): Promise<any> => {
+    logger.info('API: deletePost');
+
+    return getFromApi('DELETE', `posts/${postId}`);
 };

@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { getPosts } from './cloud/posts';
+import { getPosts } from './api/posts';
 import { Post, PostsContext } from './contexts/posts';
 import { logger } from './helpers/logger';
 import src from './logo.svg';
