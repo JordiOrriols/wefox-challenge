@@ -46,10 +46,18 @@ const PostSeeMore = styled('a')((): any => ({
 export const CardPost: FC<Props> = (props: Props): ReactElement => {
     const { post } = props;
 
+    const onImageError: React.ReactEventHandler<HTMLImageElement> = (
+        event: React.SyntheticEvent<HTMLImageElement>
+    ): void => {
+        event.currentTarget.onerror = null; // prevents looping
+        event.currentTarget.src =
+            'https://previews.123rf.com/images/ominaesi/ominaesi1701/ominaesi170100010/68761420-silueta-inconsútil-urban-landscape-city-real-estate-summer-day-fondo-plano-diseño-concepto-icono-pla.jpg';
+    };
+
     return (
         <Card>
             <>
-                <PostImage src={post.image_url} />
+                <PostImage src={post.image_url} onError={onImageError} />
                 <PostContent>
                     <PostTitle>{post.title}</PostTitle>
                     <PostDescription>{post.content}</PostDescription>
