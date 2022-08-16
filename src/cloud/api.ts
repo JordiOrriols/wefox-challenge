@@ -13,7 +13,7 @@ type AllowedMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
 export const getFromApi = async (
     method: AllowedMethods,
     url: string
-): Promise<any> => {
+): Promise<unknown> => {
     try {
         const response: Response = await fetch(
             `http://localhost:3000/api/v1/${url}`,
