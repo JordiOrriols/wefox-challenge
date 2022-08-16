@@ -17,7 +17,14 @@ export const getFromApi = async (
 ): Promise<unknown> => {
     const response: Response = await fetch(
         `http://localhost:3000/api/v1/${url}`,
-        { method, body: body ? JSON.stringify(body) : undefined }
+        {
+            method,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: body ? JSON.stringify(body) : undefined,
+        }
     );
 
     if (!response || !response.ok) {
