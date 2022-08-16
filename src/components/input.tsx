@@ -20,7 +20,7 @@ interface Props {
 
 const Container = styled('div')((): any => ({
     width: '100%',
-    padding: '10px 40px',
+    padding: '15px 0',
     boxSizing: 'border-box',
 }));
 

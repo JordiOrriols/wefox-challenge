@@ -7,10 +7,11 @@
  */
 
 import { useContext, useEffect, useState, FC, ReactElement } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { addPost, updatePost } from '../api/posts';
+import { Button } from '../components/button';
 import { Card } from '../components/card';
 import { CardPost } from '../components/card-post';
 import { Input } from '../components/input';
@@ -54,7 +55,7 @@ const RightPreview = styled('div')((): any => ({
 }));
 
 const Form = styled('form')((): any => ({
-    padding: '30px 0',
+    padding: '30px 50px',
 }));
 
 const Title = styled('h2')((): any => ({
@@ -70,6 +71,7 @@ const CreateNewPost = styled('a')((): any => ({
 const PostEditScreen: FC = (): ReactElement => {
     const postsContext = useContext(PostsContext);
     const [post, setPost] = useState<DefaultPost>(defaultPost);
+    const navigate = useNavigate();
 
     const params = useParams();
 
@@ -113,6 +115,8 @@ const PostEditScreen: FC = (): ReactElement => {
             } else {
                 await addPost(postToSend);
             }
+
+            navigate('/');
         } catch (error) {
             logger.error(`${error}`);
         }
@@ -121,7 +125,9 @@ const PostEditScreen: FC = (): ReactElement => {
     return (
         <Container>
             <LeftForm>
-                <Title>Edit Post</Title>
+                <Title>
+                    {params.id !== undefined ? 'Edit Post' : 'Create Post'}
+                </Title>
                 <Card>
                     <Form onSubmit={onSubmit}>
                         <Input
@@ -154,7 +160,12 @@ const PostEditScreen: FC = (): ReactElement => {
                             value={post.long}
                             onChange={onInputChange}
                         />
-                        <button type="submit">Save</button>
+
+                        <Button
+                            primary={true}
+                            type="submit"
+                            label="Save"
+                        ></Button>
 
                         <CreateNewPost href={'/'}>Cancel</CreateNewPost>
                     </Form>
