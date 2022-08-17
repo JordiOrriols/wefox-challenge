@@ -56,6 +56,10 @@ Linting for all javascript and typescript files.<br />
 
 Fixes all auto-fixable linting errors on all javascript and typescript files.<br />
 
+### `npm run prettier`
+
+This script will change all code styling on all files with a standard.<br />
+
 ### `npm start`
 
 Runs the app in the development mode.\
