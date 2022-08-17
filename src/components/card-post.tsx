@@ -15,6 +15,7 @@ import { colors } from '../helpers/colors';
 
 interface Props {
     post: Post;
+    preview?: boolean;
 }
 
 const PostImage = styled('img')((): any => ({
@@ -61,9 +62,14 @@ export const CardPost: FC<Props> = (props: Props): ReactElement => {
                 <PostContent>
                     <PostTitle>{post.title}</PostTitle>
                     <PostDescription>{post.content}</PostDescription>
-                    <PostSeeMore href={`/edit/${post.id}`}>
-                        Edit post
-                    </PostSeeMore>
+
+                    {!props.preview ? (
+                        <PostSeeMore href={`/edit/${post.id}`}>
+                            Edit post
+                        </PostSeeMore>
+                    ) : (
+                        'Edit post'
+                    )}
                 </PostContent>
             </>
         </Card>
