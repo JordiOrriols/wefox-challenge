@@ -7,13 +7,18 @@
  */
 
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import PostEditScreen from './post-edit';
 
 describe('Post Edit Screen', (): void => {
     test('renders post edit', (): void => {
-        render(<PostEditScreen />);
-        const text = screen.getByText('Edit Post');
+        render(
+            <Router>
+                <PostEditScreen />
+            </Router>
+        );
+        const text = screen.getByText('Create Post');
         expect(text).toBeInTheDocument();
     });
 });
