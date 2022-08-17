@@ -10,7 +10,7 @@ import { useContext, useEffect, useState, FC, ReactElement } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { addPost, updatePost } from '../api/posts';
+import { addPost, deletePost, updatePost } from '../api/posts';
 import { Button } from '../components/button';
 import { Card } from '../components/card';
 import { CardPost } from '../components/card-post';
@@ -123,6 +123,17 @@ const PostEditScreen: FC = (): ReactElement => {
         }
     };
 
+    const onDelete = async (): Promise<void> => {
+        if (params.id !== undefined) {
+            const currentPostID = parseInt(params.id, undefined);
+
+            await deletePost(currentPostID);
+        }
+
+        postsContext.refresh();
+        navigate('/');
+    };
+
     return (
         <Container>
             <LeftForm>
@@ -162,7 +173,15 @@ const PostEditScreen: FC = (): ReactElement => {
                             onChange={onInputChange}
                         />
 
-                        <Button primary={true} type="submit" label="Save" />
+                        <Button style={'primary'} type="submit" label="Save" />
+                        {params.id !== undefined ? (
+                            <Button
+                                style={'red'}
+                                type="button"
+                                label="Delete"
+                                onClick={onDelete}
+                            />
+                        ) : null}
 
                         <CreateNewPost href={'/'}>Cancel</CreateNewPost>
                     </Form>
@@ -173,6 +192,7 @@ const PostEditScreen: FC = (): ReactElement => {
                 <Title>Preview</Title>
                 <CardPost
                     post={{ ...post, id: 0, created_at: '', updated_at: '' }}
+                    preview={true}
                 />
             </RightPreview>
         </Container>

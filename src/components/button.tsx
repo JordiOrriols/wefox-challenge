@@ -12,26 +12,52 @@ import styled from 'styled-components';
 import { colors } from '../helpers/colors';
 
 interface Props {
-    primary: boolean;
+    style: 'primary' | 'secondary' | 'red';
     type?: 'button' | 'submit' | 'reset';
     label: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const StyledButton = styled('button')((): any => ({
+interface StyledButtonTheme {
+    background: string;
+    hover: string;
+}
+
+interface StyledButtonProps {
+    theme: StyledButtonTheme;
+}
+
+const StyledButton = styled('button')((props: StyledButtonProps): any => ({
     margin: 0,
     border: 'none',
     color: 'white',
     padding: '10px 40px',
-    background: colors.blue,
+    background: props.theme.background,
     '&:hover': {
-        background: colors.darkBlue,
+        background: props.theme.hover,
     },
 }));
 
 export const Button: FC<Props> = (props: Props): ReactElement => {
+    const backgroundColors = {
+        primary: colors.blue,
+        secondary: colors.gray,
+        red: colors.darkRed,
+    };
+
+    const hoverColors = {
+        primary: colors.darkBlue,
+        secondary: colors.darkGray,
+        red: colors.red,
+    };
+
+    const theme = {
+        background: backgroundColors[props.style],
+        hover: hoverColors[props.style],
+    };
+
     return (
-        <StyledButton type={props.type} onClick={props.onClick}>
+        <StyledButton theme={theme} type={props.type} onClick={props.onClick}>
             {props.label}
         </StyledButton>
     );
