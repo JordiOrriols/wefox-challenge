@@ -1,0 +1,10 @@
+{
+    "package.json": ["npx npm-sort"],
+    "public/**/*.{html,json}": ["prettier --write"],
+    "src/**/*.{json,md}": ["prettier --write"],
+    "src/**/*.{css,scss}": [
+        "npm run stylelint-fix",
+        "prettier --write"
+    ],
+    "src/**/*.{tsx,ts}": ["prettier --write"]
+}

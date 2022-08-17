@@ -2,14 +2,68 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# INCLUDED
+
+-   React
+-   Create React App
+-   Typescript
+-   Husky
+-   Prettier
+-   Stylelint
+-   Tslint
+
+# REQUIREMENTS
+
+Install
+
+-   nvm
+
+# SETUP
+
+First we ensure to have the correct nvm version
+
+```bash
+nvm install
+```
+
+To install the dependencies run
+
+```bash
+npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `npm run analyze`
+
+Builds the project and analyze the different build files.<br />
+
+### `npm run stylelint`
+
+Linting all css and scss files.<br />
+
+### `npm run stylelint-fix`
+
+Fixes all auto-fixable linting errors on all css and scss files.<br />
+
+### `npm run tslint`
+
+Linting for all javascript and typescript files.<br />
+
+### `npm run tslint-fix`
+
+Fixes all auto-fixable linting errors on all javascript and typescript files.<br />
+
+### `npm run prettier`
+
+This script will change all code styling on all files with a standard.<br />
+
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx tsc -p tsconfig.json
+npx tsc -p tsconfig.test.json
+
+npm run build
+CI=true npm run test
