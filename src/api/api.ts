@@ -32,5 +32,5 @@ export const getFromApi = async (
         throw new Error(`${response.status}`);
     }
 
-    return response.json();
+    if (method === 'GET') return response.json();
 };
