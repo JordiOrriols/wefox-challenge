@@ -8,6 +8,7 @@
 
 import { useContext, useEffect, useState, FC, ReactElement } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import { addPost, deletePost, updatePost } from '../api/posts';
@@ -136,19 +137,25 @@ const PostEditScreen: FC = (): ReactElement => {
                 navigate('/');
             } catch (error) {
                 logger.error(`${error}`);
+                toast.error('Not possible to save the current Post!');
             }
         }
     };
 
     const onDelete = async (): Promise<void> => {
-        if (params.id !== undefined) {
-            const currentPostID = parseInt(params.id, undefined);
+        try {
+            if (params.id !== undefined) {
+                const currentPostID = parseInt(params.id, undefined);
 
-            await deletePost(currentPostID);
+                await deletePost(currentPostID);
+            }
+
+            postsContext.refresh();
+            navigate('/');
+        } catch (error) {
+            logger.error(`${error}`);
+            toast.error('Not possible to delete the current Post!');
         }
-
-        postsContext.refresh();
-        navigate('/');
     };
 
     return (

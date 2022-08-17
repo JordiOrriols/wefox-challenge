@@ -7,11 +7,14 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 
 import { getPosts } from './api/posts';
 import { Post, PostsContext } from './contexts/posts';
 import { logger } from './helpers/logger';
+import { magicNumber } from './helpers/numbers';
 import { Navigator } from './navigator';
 
 const AppContainer = styled('div')((): any => ({
@@ -67,13 +70,12 @@ function App(): React.ReactElement {
             })
             .catch((error: any): void => {
                 logger.error(`${error}`);
+                toast.error('Not possible to load Posts!');
             });
     };
 
     useEffect((): void => {
         refresh();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -115,6 +117,19 @@ function App(): React.ReactElement {
                 </AppContent>
 
                 <AppFooter>Jordi Orriols</AppFooter>
+
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={magicNumber.thousand * magicNumber.five}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={true}
+                    rtl={false}
+                    pauseOnFocusLoss={true}
+                    draggable={true}
+                    pauseOnHover={true}
+                    theme={'colored'}
+                />
             </AppContainer>
         </PostsContext.Provider>
     );
