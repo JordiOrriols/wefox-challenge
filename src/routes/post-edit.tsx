@@ -68,6 +68,16 @@ const CreateNewPost = styled('a')((): any => ({
     color: colors.blue,
 }));
 
+const ButtonContainer = styled('div')((): any => ({
+    margin: '20px',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'stretch',
+    alignContent: 'stretch',
+}));
+
 const PostEditScreen: FC = (): ReactElement => {
     const postsContext = useContext(PostsContext);
     const [post, setPost] = useState<DefaultPost>(defaultPost);
@@ -96,30 +106,37 @@ const PostEditScreen: FC = (): ReactElement => {
         if (validIdList.indexOf(id) !== -1) setPost({ ...post, [id]: value });
     };
 
+    const validateValue = (value: string): boolean => {
+        return value.trim().length !== 0;
+    };
+
     const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
         event: React.FormEvent<HTMLFormElement>
     ): Promise<void> => {
         event.preventDefault();
-        try {
-            const postToSend: DefaultPost = {
-                title: post.title,
-                content: post.content,
-                image_url: post.image_url,
-                lat: post.lat,
-                long: post.long,
-            };
 
-            if (params.id !== undefined) {
-                const currentPostID = parseInt(params.id, undefined);
-                await updatePost(currentPostID, postToSend);
-            } else {
-                await addPost(postToSend);
+        if (validateValue(post.title) && validateValue(post.content)) {
+            try {
+                const postToSend: DefaultPost = {
+                    title: post.title,
+                    content: post.content,
+                    image_url: post.image_url,
+                    lat: post.lat,
+                    long: post.long,
+                };
+
+                if (params.id !== undefined) {
+                    const currentPostID = parseInt(params.id, undefined);
+                    await updatePost(currentPostID, postToSend);
+                } else {
+                    await addPost(postToSend);
+                }
+
+                postsContext.refresh();
+                navigate('/');
+            } catch (error) {
+                logger.error(`${error}`);
             }
-
-            postsContext.refresh();
-            navigate('/');
-        } catch (error) {
-            logger.error(`${error}`);
         }
     };
 
@@ -144,15 +161,17 @@ const PostEditScreen: FC = (): ReactElement => {
                     <Form onSubmit={onSubmit}>
                         <Input
                             id="title"
-                            label="Title"
+                            label="Title (Required)"
                             value={post.title}
                             onChange={onInputChange}
+                            error={!validateValue(post.title)}
                         />
                         <Input
                             id="content"
-                            label="Content"
+                            label="Content (Required)"
                             value={post.content}
                             onChange={onInputChange}
+                            error={!validateValue(post.content)}
                         />
                         <Input
                             id="image_url"
@@ -172,20 +191,26 @@ const PostEditScreen: FC = (): ReactElement => {
                             value={post.long}
                             onChange={onInputChange}
                         />
-
-                        <Button style={'primary'} type="submit" label="Save" />
-                        {params.id !== undefined ? (
+                        <ButtonContainer>
                             <Button
-                                style={'red'}
-                                type="button"
-                                label="Delete"
-                                onClick={onDelete}
+                                styleColor={'primary'}
+                                type="submit"
+                                label="Save"
                             />
-                        ) : null}
 
-                        <CreateNewPost href={'/'}>Cancel</CreateNewPost>
+                            {params.id !== undefined ? (
+                                <Button
+                                    styleColor={'red'}
+                                    type="button"
+                                    label="Delete"
+                                    onClick={onDelete}
+                                />
+                            ) : null}
+                        </ButtonContainer>
                     </Form>
                 </Card>
+
+                <CreateNewPost href={'/'}>Go Back</CreateNewPost>
             </LeftForm>
 
             <RightPreview>

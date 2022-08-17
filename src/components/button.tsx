@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import { colors } from '../helpers/colors';
 
 interface Props {
-    style: 'primary' | 'secondary' | 'red';
+    styleColor: 'primary' | 'secondary' | 'red';
     type?: 'button' | 'submit' | 'reset';
     label: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -52,8 +52,8 @@ export const Button: FC<Props> = (props: Props): ReactElement => {
     };
 
     const theme = {
-        background: backgroundColors[props.style],
-        hover: hoverColors[props.style],
+        background: backgroundColors[props.styleColor],
+        hover: hoverColors[props.styleColor],
     };
 
     return (

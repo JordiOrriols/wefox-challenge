@@ -16,6 +16,15 @@ interface Props {
     label: string;
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
+    error?: boolean;
+}
+
+interface StyledInputTheme {
+    error: boolean;
+}
+
+interface StyledInputProps {
+    theme: StyledInputTheme;
 }
 
 const Container = styled('div')((): any => ({
@@ -29,18 +38,28 @@ const Label = styled('label')((): any => ({
     paddingBottom: '10px',
 }));
 
-const StyledInput = styled('input')((): any => ({
+const StyledInput = styled('input')((props: StyledInputProps): any => ({
     width: '100%',
     height: '25px',
     border: 'none',
-    borderBottom: `2px solid ${colors.gray}`,
+    borderBottom: `2px solid ${props.theme.error ? colors.red : colors.gray}`,
     '&:focus': {
         outline: 'none',
-        borderBottomColor: colors.blue,
+        borderBottomColor: props.theme.error ? colors.red : colors.blue,
     },
 }));
 
+const Error = styled('div')((): any => ({
+    color: colors.red,
+    fontSize: '12px',
+    marginTop: '10px',
+}));
+
 export const Input: FC<Props> = (props: Props): ReactElement => {
+    const theme = {
+        error: props.error,
+    };
+
     return (
         <Container>
             <Label>
@@ -51,7 +70,9 @@ export const Input: FC<Props> = (props: Props): ReactElement => {
                     id={props.id}
                     value={props.value}
                     onChange={props.onChange}
+                    theme={theme}
                 />
+                {props.error ? <Error>This field is required</Error> : null}
             </Label>
         </Container>
     );
